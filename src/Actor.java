@@ -12,22 +12,25 @@ public class Actor extends Person {
     @Override
     public String toString() {
         return "Actor{" +
-                "height=" + height +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", gender=" + gender +
+                ", height=" + height +
                 '}';
     }
 
-
-    @Override
+   @Override
     public boolean equals(Object object) {
-        if (!(object instanceof Actor actor)) return false;
-        return Double.compare(height, actor.height) == 0;
+        if (this == object) return true; // проверка адресов объектов
+        if (object == null) return false; // проверка на null
+        if (this.getClass() != object.getClass()) return false; // проверка на соответствие классу
+        Actor actor = (Actor) object; // доступ к полям
+        return Objects.equals(name, actor.name) && // поля
+                Objects.equals(surname, actor.surname) &&
+                (height == actor.height); // примитивное
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(height);
+        return Objects.hash(name, surname, height);
     }
 }

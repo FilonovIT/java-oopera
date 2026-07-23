@@ -1,16 +1,11 @@
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /* спектакль */
 public class Show {
     protected String title; // название
     protected int duration; // длительность в минутах
     protected Director director; // режиссёр
-    protected Map<Show, Actor> listOfActors; // список актёров
-
-    public Show() {
-        }
+    protected ArrayList<Actor> listOfActors = new ArrayList<>(); // список актёров
 
     public Show(String title, int duration, Director director) {
         this.title = title;
@@ -28,15 +23,27 @@ public class Show {
                 '}';
     }
 
-//    public void printListOfActors() {
-//        for (Actor actorArrayList : listOfActors) {
-//            System.out.println(actorArrayList.toString());
-//        }
-//    }
+    public void printListOfActors() {
+        for (Actor actorArrayList : listOfActors) {
+            System.out.println(title + " " + actorArrayList);
+        }
+    }
 
-    public void addActor(Show show, Actor actor) {
+    public void addActor(Actor actor) {
+        //listOfActors.add(actor);
 
-        listOfActors = new HashMap<>();
-        listOfActors.put(show, actor);
+        if (!listOfActors.contains(actor)) {
+            listOfActors.add(actor);
+        } else {
+            System.out.println("В спектакле уже участвует этот актёр!");
+        }
+
+        System.out.println(listOfActors);
+    }
+
+    public void replacementActor(Actor actor/* кого будем менять */, Actor repActor /* на кого меняем */) {
+        int index = listOfActors.indexOf(actor);
+
+        listOfActors.set(index, repActor);
     }
 }
