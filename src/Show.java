@@ -30,20 +30,22 @@ public class Show {
     }
 
     public void addActor(Actor actor) {
-        //listOfActors.add(actor);
-
         if (!listOfActors.contains(actor)) {
             listOfActors.add(actor);
         } else {
             System.out.println("В спектакле уже участвует этот актёр!");
         }
-
-        System.out.println(listOfActors);
     }
 
     public void replacementActor(Actor actor/* кого будем менять */, Actor repActor /* на кого меняем */) {
-        int index = listOfActors.indexOf(actor);
+        if (listOfActors.contains(actor)) {
+            int index = listOfActors.indexOf(actor);
+            listOfActors.set(index, repActor);
+        } else {
+            System.out.println("В спектакле не участвует этот актёр!");
+        }
 
-        listOfActors.set(index, repActor);
+
+
     }
 }
